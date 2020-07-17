@@ -17,7 +17,10 @@ MainWindow::MainWindow()
 		: name_label("名字"),
 		  work_dir_label("工作目录"),
 		  save_button("保存") {
-	client.set_work_dir(Gio::File::create_for_path(Glib::get_home_dir()));
+	current_work_dir = Gio::File::create_for_path(Glib::get_home_dir());
+	client.set_work_dir(current_work_dir);
+
+	set_title("Lena");
 	set_position(Gtk::WindowPosition::WIN_POS_CENTER);
 	set_icon_name(Gtk::Stock::NETWORK.id);
 	settings_box.set_orientation(Gtk::ORIENTATION_VERTICAL);

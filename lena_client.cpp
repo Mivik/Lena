@@ -75,6 +75,7 @@ void LenaClient::init_packet() {
 			LENA_SERVER_SIDE_BROADCAST_PORT
 	);
 	while (true) {
+		sleep(BROADCAST_INTERVAL);
 		broadcast_packet_mutex.lock();
 		broadcast_socket->send_to(broadcast_client_side_address, (const char *) &broadcast_packet,
 								  sizeof(Cena::BroadcastPacket));
@@ -82,7 +83,6 @@ void LenaClient::init_packet() {
 								  sizeof(Cena::BroadcastPacket));
 		broadcast_packet_mutex.unlock();
 		Log::v("Sent broadcast packet");
-		sleep(BROADCAST_INTERVAL);
 	}
 }
 
